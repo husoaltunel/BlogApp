@@ -1,0 +1,86 @@
+﻿@model IEnumerable<BlogApp.Models.Blog>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (TempData["blog"] != null)
+{
+    var blog = (BlogApp.Models.Blog)TempData["blog"];
+    <div class="alert alert-success">
+        <span class="glyphicon glyphicon-ok"></span>
+        <strong>@blog.Title</strong> edited successfully
+    </div>
+}
+<h2>Blog List</h2>
+<hr />
+<p>
+    @Html.ActionLink("Create New Blog", "Create",null,new {@class = "btn btn-primary" })
+</p>
+<hr />
+<table class="table table-bordered table-hover table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UploadDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Confirmation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Home)
+        </th>
+        
+        <th style="width:168px"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Photo)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.UploadDate)
+        </td>
+        <td>
+            @if (item.Confirmation)
+            {
+                <label class="label label-success">Approved</label>
+            }
+            else
+            {
+                <label class="label label-danger">Waiting for approval</label>
+            }
+        </td>
+        <td>
+            @if (item.Home)
+            {
+                <label class="btn btn-success btn-xs">Home</label>
+            }
+            else
+            {
+                <label class="btn btn-danger btn-xs">Not Home</label>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id },new {@class = "btn btn-warning btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id }, new { @class = "btn btn-danger btn-xs" })
+        </td>
+    </tr>
+}
+
+</table>

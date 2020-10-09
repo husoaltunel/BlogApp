@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BlogApp.Models.CategoryModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+@if (TempData["category"] != null)
+{
+    var category = (BlogApp.Models.Category)TempData["category"];
+    <div class="alert alert-success">
+        <span class="glyphicon glyphicon-ok"></span>
+        <strong>@category.CategoryName</strong> added successfully
+    </div>
+}
+<h2>Category List</h2>
+<hr />
+<p>
+    @Html.ActionLink("Create New Category", "Create",null,new {@class="btn btn-primary" })
+</p>
+<hr />
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th style="width:25%">
+            @Html.DisplayNameFor(model => model.BlogCount)
+        </th>
+        <th style="width:168px"></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @item.BlogCount
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id },new {@class="btn btn-warning btn-xs" }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id },new {@class="btn btn-success btn-xs" }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id },new {@class="btn btn-danger btn-xs" })
+        </td>
+    </tr>
+}
+
+</table>

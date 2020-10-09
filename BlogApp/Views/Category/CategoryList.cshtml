@@ -1,0 +1,17 @@
+﻿@model IEnumerable<BlogApp.Models.Category>
+
+<div class="well">
+    <h4 style="color:cornflowerblue">Blog Categories</h4>
+    <div class="row">
+        @foreach (var category in Model)
+        {
+            <div class="col-lg-6">
+                <ul class="list-unstyled">
+                    <li>
+                        @Html.ActionLink(category.CategoryName,"List","Blog",new {id = category.Id},new {@class = "btn" })
+                    </li>
+                </ul>
+            </div>
+        }
+    </div>
+</div>

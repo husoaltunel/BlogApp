@@ -1,0 +1,70 @@
+﻿@model BlogApp.Models.Blog
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h1>@Model.Title</h1>
+
+<p>
+    <span class="glyphicon glyphicon-time"></span>
+    @Model.UploadDate
+</p>
+<hr />
+<img class="img-responsive" src="http://placehold.it/900x300" />
+<hr />
+<blockquote>
+    <p>@Model.Description</p>
+</blockquote>
+<p>
+    @Model.Content
+</p>
+<hr />
+<div class="comment">
+    <div class="well">
+        <h4>Leave a comment</h4>
+        <form role="form" method="post">
+            <div class="form-group">
+                <textarea class="form-control" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn-btn-primary">Submit</button>
+        </form>
+    </div>
+    <hr />
+    <div class="media">
+        <img src="http://placehold.it/64x64" class="mr-3" alt="...">
+        <div class="media-body">
+            <h5 class="mt-0">Media heading</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+    </div>
+    <div class="media">
+        <img src="http://placehold.it/64x64" class="mr-3" alt="...">
+        <div class="media-body">
+            <h5 class="mt-0">Media heading</h5>
+            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+        </div>
+    </div>
+</div>
+
+@section RightSection {
+    <div class="well">
+        <h4>Blog Search</h4>
+        <div class="input-group">
+            <input class="form-control" type="text" name="name" value="" />
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-search">
+
+                    </span>
+                </button>
+            </span>
+        </div>
+    </div>
+    @{ Html.RenderAction("CategoryList","Category");}
+}
+
+
+
+

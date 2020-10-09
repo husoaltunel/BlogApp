@@ -1,0 +1,8 @@
+﻿@model IEnumerable<BlogApp.Models.BlogModel>
+
+@Html.Partial("BlogList", Model)
+
+@section RightSection{
+    @Html.Partial("Search")
+    @{ Html.RenderAction("CategoryList", "Category");}
+}
